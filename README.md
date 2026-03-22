@@ -1,2 +1,16 @@
-# django-project
-The Smart Expense Tracker (MoneyMind) is a web-based application developed using Django that helps users manage and track their daily expenses efficiently. The main goal of this project is to provide users with a simple and smart way to monitor their spending habits, control their budget, and make better financial decisions.
+# Smart Expense Tracker
+
+## 📌 Project Description
+This is a Django-based web application to track daily expenses.
+
+## 🛠️ Technologies Used
+- Python
+- Django
+- MySQL
+- HTML, CSS
+
+## 🚀 How to Run Project
+
+```bash
+pip install -r requirements.txt
+python manage.py runserver
