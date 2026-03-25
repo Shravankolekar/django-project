@@ -36,4 +36,26 @@ def SignUp(request):
     return render(request, "User/signup.html", {"error": error})
 
 def LogIn(request):
-    return render(request, 'User/login.html')
+    error = ""
+    msg = ""
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        
+        
+            
+        if len(password) < 8:
+            error = "Password must be at least 8 characters"
+        
+        else:
+            try:
+                loginuser = User.objects.get(email=email, password=password)
+                error = "Login Successful"
+            except:
+                error = "Invalid email or password"
+    
+    return render(request, 'User/login.html', {'error': error , msg : "msg"})
+
+def AllUserDetails(request):
+    users = User.objects.all()
+    return render(request, "User/AllUserDetails.html",{'users ': users})

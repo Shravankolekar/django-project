@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login User</title>
 </head>
 <body>
-    
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="">Email id : </label>
+        <input type="text"
+        name="email" 
+        placeholder="Enter Your Email Id" 
+        required>
+
+        <label for="">Password : </label>
+        <input type="text"
+        name="password"
+        placeholder="Enter your Password"
+        required>
+
+        <button type="submit">Login Up</button>
+
+        
+        {% if error %}
+        <p><b>{{error}}</b></p>
+        {% endif %}
+
+        {% if msg %}
+        <p><b>{{msg}}</b></p>
+        {% endif %}
+            
+    </form>
 </body>
 </html>
