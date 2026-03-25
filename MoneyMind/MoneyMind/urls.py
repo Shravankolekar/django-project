@@ -21,4 +21,5 @@ from ExpenseApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sham/', views.LogIn, name='login'),
+    path('' , views.SignUp , name="SignUp"),
 ]
