@@ -24,5 +24,7 @@ urlpatterns = [
     path('' , views.SignUp , name="SignUp"),
 
     path('Loginuser/', views.LogIn, name='login'),
-    path("AllUserdetails/", views.AllUserDetails , name="AllUserdetails")
+    path("AllUserdetails/", views.AllUserDetails , name="AllUserdetails"),
+    path("addcategory/" , views.Addcategory , name="addcategory"),
+    
 ]

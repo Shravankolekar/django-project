@@ -27,3 +27,22 @@ class Expense(models.Model):
     
     def __str__(self):
         return self.description
+    
+class Budget(models.Model):
+    bid = models.IntegerField(primary_key=True)
+    uid = models.ForeignKey(User, on_delete=models.CASCADE)
+    monthly_limit = models.BigIntegerField()
+    month = models.CharField()
+    
+    def __str__(self):
+        return self.month
+    
+class Report(models.Model):
+    rid = models.IntegerField(primary_key=True)
+    uid = models.ForeignKey(User , on_delete=models.CASCADE)
+    total_expense = models.BigIntegerField()
+    month = models.CharField()
+    
+    def __str__(self):
+        return self.month
+    

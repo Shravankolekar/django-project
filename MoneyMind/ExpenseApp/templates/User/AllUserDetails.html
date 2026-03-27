@@ -6,6 +6,7 @@
     <title>All Details About User</title>
 </head>
 <body>
+    {% csrf_token %}
     <table>
         <thead>
             <tr>
@@ -16,9 +17,9 @@
             </tr>
         </thead>
         <tbody>
-            {% for u in users %}
+            {% for u in usersdata %}
             <tr>
-                <td>{{u.id}}</td>
+                <td>{{u.uid}}</td>
                 <td>{{u.username}}</td>
                 <td>{{u.email}}</td>
                 <td>{{u.password}}</td>

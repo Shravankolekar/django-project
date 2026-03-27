@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import User
+from .models import User , Category
 
 # Create your views here.
 
@@ -57,5 +57,21 @@ def LogIn(request):
     return render(request, 'User/login.html', {'error': error , msg : "msg"})
 
 def AllUserDetails(request):
-    users = User.objects.all()
-    return render(request, "User/AllUserDetails.html",{'users ': users})
+    usersdata = User.objects.all()
+    return render(request, "User/AllUserDetails.html",{'usersdata ': usersdata})
+
+def Addcategory(request):
+    error = ""
+    
+    if request.method == "POST":
+        cname = request.POST.get("cname")
+        
+        try:
+            
+            Category.objects.create(
+                cname = cname
+            )
+            error = "category is added sucessfuly"
+        except :
+            error = "category is not added sucessfuly"
+    return render(request,"Category/addcategory.html" , {"error" : error})
