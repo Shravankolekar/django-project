@@ -28,7 +28,8 @@ urlpatterns = [
     path("addcategory/" , views.Addcategory , name="addcategory"),
     path("showallcategory/" , views.Showwallcategory , name="showallcategory"),
     path("deletecategory/" , views.Deletecategory , name="deletecategory"),
-    path("searchcategoryrecord/" , views.Searchcategory , name="searchcategoryrecords")
+    path("searchcategoryrecord/" , views.Searchcategory , name="searchcategoryrecords"),
+    path("updatecategoryrecords/" , views.updatecategory , name="updatecategoryrecords"),
     
     
 ]

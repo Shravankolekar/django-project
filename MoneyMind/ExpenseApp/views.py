@@ -110,3 +110,24 @@ def Searchcategory(request):
 
     return render(request, "Category/viewcategory.html", {"error": error, "c": c})
 
+def updatecategory(request):
+    error = ""
+    
+    if request.method == "POST":
+        cid = request.POST.get("cid")
+        cname = request.POST.get('cname')
+        
+        if cname.isdigit():
+            error = "enter only charachter not number"
+        
+        c =  Category.objects.get(cid = cid)
+        c.cname = cname
+        c.save()
+        
+        error = "recoed update sucessfullay"
+        
+        if c is None:
+            error = f"{cid} record is not found"
+        
+    return render(request, "Category/updatecategory.html" , {"error" : error})
+
