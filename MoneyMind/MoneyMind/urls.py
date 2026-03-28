@@ -26,5 +26,9 @@ urlpatterns = [
     path('Loginuser/', views.LogIn, name='login'),
     path("AllUserdetails/", views.AllUserDetails , name="AllUserdetails"),
     path("addcategory/" , views.Addcategory , name="addcategory"),
+    path("showallcategory/" , views.Showwallcategory , name="showallcategory"),
+    path("deletecategory/" , views.Deletecategory , name="deletecategory"),
+    path("searchcategoryrecord/" , views.Searchcategory , name="searchcategoryrecords")
+    
     
 ]

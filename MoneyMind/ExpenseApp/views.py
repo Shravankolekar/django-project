@@ -75,3 +75,38 @@ def Addcategory(request):
         except :
             error = "category is not added sucessfuly"
     return render(request,"Category/addcategory.html" , {"error" : error})
+
+def Showwallcategory(request):
+    Categoryes = Category.objects.all()
+    return render(request, "Category/showallcategory.html" , {"Categoryes" : Categoryes})
+
+def Deletecategory(request):
+    error = " "
+    
+    if request.method == "POST":
+        cid = request.POST.get('cid')
+        
+        if Category.objects.filter(cid = cid).exists():
+            deletecategory = Category.objects.get(cid = cid)
+            deletecategory.delete()
+            error = "data is deleted sucessfully"
+        
+        else:
+            error= f"{cid} number user not found"
+            
+        return render(request , "Category/deletecategory.html" , {error : "error"})    
+    
+def Searchcategory(request):
+    error = ""
+    c = None
+
+    if request.method == "POST":
+        cid = request.POST.get('cid')
+
+        c = Category.objects.filter(cid=cid).first()
+
+        if c is None:
+            error = f"{cid} category not present, please enter another number"
+
+    return render(request, "Category/viewcategory.html", {"error": error, "c": c})
+

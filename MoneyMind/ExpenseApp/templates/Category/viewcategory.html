@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Showing a single record</title>
 </head>
 <body>
     
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text"
+        name="cid"
+        placeholder="enter a category id "
+        required>
+
+            <button type="submit">Search Category</button>
+
+    {% if error %}
+    <p><b>{{error}}</b></p>
+    {% endif %}
+
+    </form>
+    {% if c %}
+    <table>
+        <thead>
+            <tr>
+                <th>Category Id</th>
+                <th>Category Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{c.cid}}</td>
+                <td>{{c.cname}}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
 </body>
 </html>
