@@ -112,22 +112,32 @@ def Searchcategory(request):
 
 def updatecategory(request):
     error = ""
-    
+    c = None
+
     if request.method == "POST":
-        cid = request.POST.get("cid")
-        cname = request.POST.get('cname')
-        
-        if cname.isdigit():
-            error = "enter only charachter not number"
-        
-        c =  Category.objects.get(cid = cid)
-        c.cname = cname
-        c.save()
-        
-        error = "recoed update sucessfullay"
-        
-        if c is None:
-            error = f"{cid} record is not found"
-        
-    return render(request, "Category/updatecategory.html" , {"error" : error})
+        try:
+            cid = int(request.POST.get("cid"))
+            cname = request.POST.get('cname')
+
+            # validation
+            if cname.isdigit():
+                error = "Enter only characters, not numbers"
+                return render(request, "Category/updatecategory.html", {"error": error})
+
+            # get object
+            c = Category.objects.get(cid=cid)
+
+            # update
+            c.cname = cname
+            c.save()
+
+            error = "Record updated successfully"
+
+        except Category.DoesNotExist:
+            error = "Category not found"
+
+        except Exception as e:
+            error = "Something went wrong"
+
+    return render(request, "Category/updatecategory.html", {"error": error, "c": c})
 

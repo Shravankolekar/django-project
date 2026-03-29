@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Category</title>
+  </head>
+  <body>
+
+    <h2>Update Category</h2>
+
+    <!-- Error Message -->
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
     <form action="" method="POST">
-        {% csrf_token %}
-        <input type="number"
+      {% csrf_token %}
+
+      <!-- Category ID -->
+      <input
+        type="number"
         name="cid"
-        placeholder="enter a category id"
-        required>
+        placeholder="Enter a category id"
+        required
+      />
 
-        
-      <select name="cname">
-        <option>-- Select Category --</option>
-        <option value="Food">Food</option>
-        <option value="Travel">Travel</option>
-        <option value="Shopping">Shopping</option>
-        <option value="Bill">Bill</option>
-        <option value="Rent">Rent</option>
-        <option value="Recharge">Recharge</option>
-        <option value="Entertainment">Entertainment</option>
-      </select>
+      <br><br>
 
-      <label for="">Other Category</label>
-      <input type="text" 
-      name="cname"  
-      placeholder="Enter category name " 
-      value="{{c.cname}}"/>
+      <!-- Category Name -->
+      <label>Other Category</label>
+      <input
+        type="text"
+        name="cname"
+        placeholder="Enter category name"
+        value="{{ c.cname|default:'' }}"
+        required
+      />
+
+      <br><br>
 
       <button type="submit">Update Records</button>
-
-
     </form>
-</body>
+
+  </body>
 </html>
