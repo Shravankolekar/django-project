@@ -30,6 +30,7 @@ urlpatterns = [
     path("deletecategory/" , views.Deletecategory , name="deletecategory"),
     path("searchcategoryrecord/" , views.Searchcategory , name="searchcategoryrecords"),
     path("updatecategoryrecords/" , views.updatecategory , name="updatecategoryrecords"),
+    path("addexpense/" , views.addexpense , name="addexpense"),
     
     
 ]

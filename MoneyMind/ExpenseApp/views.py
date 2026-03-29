@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import User , Category
+from .models import User , Category , Expense , Budget , Report
 
 # Create your views here.
 
@@ -119,15 +119,15 @@ def updatecategory(request):
             cid = int(request.POST.get("cid"))
             cname = request.POST.get('cname')
 
-            # validation
+            
             if cname.isdigit():
                 error = "Enter only characters, not numbers"
                 return render(request, "Category/updatecategory.html", {"error": error})
 
-            # get object
+            
             c = Category.objects.get(cid=cid)
 
-            # update
+           
             c.cname = cname
             c.save()
 
@@ -140,4 +140,37 @@ def updatecategory(request):
             error = "Something went wrong"
 
     return render(request, "Category/updatecategory.html", {"error": error, "c": c})
+
+def addexpense(request):
+    
+    error = ""
+    
+    if request.method == "POST":
+        try:
+            uid = request.POST.get("uid")
+            cid = request.POST.get("cid")
+            amount = request.POST.get('amount')
+            description = request.POST.get('description')
+            
+            user = User.objects.get(uid = uid)  # Replace with actual user retrieval logic
+            
+            if User.objects.filter(uid = uid).exists():
+                pass
+            else:
+                error = "user not found"
+            
+            categoryid = Category.objects.get(cid=cid)
+            
+            Expense.objects.create(
+                uid = user,
+                cid = categoryid,
+                amount = amount,
+                description = description
+            )
+            
+            error = "Expense added successfully"
+            
+        except:
+            error = "Invalid category"
+    return render(request, "Expense/addexpense.html", {"error": error})
 

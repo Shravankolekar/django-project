@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense </title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="">User ID</label>
+        <input type="number"
+        name="uid"
+        placeholder="enter a user Id"
+        required>
+
+        <label for="">Category Id</label>
+        <input type="number"
+        name="cid"
+        placeholder="enter a category id"
+        required>
+
+        <label for="">Amount</label>
+        <input type="number"
+        name="amount"
+        placeholder="enter a amount of thet category"
+        required>
+
+        <label for="">Description </label>
+        <input type="text"
+        name="description"
+        placeholder="enter a description about this amount investment"
+        >
+
+        <button type="submit0">Add Expences</button>
+        
+
+        {% if error %}
+        <p><b>{{error}}</b></p>
+        {% endif %}
+    </form>
+</body>
+</html>
