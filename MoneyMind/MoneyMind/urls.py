@@ -33,6 +33,8 @@ urlpatterns = [
     path("updatecategoryrecords/" , views.updatecategory , name="updatecategoryrecords"),
     
     path("addexpense/" , views.addexpense , name="addexpense"),
-    
+    path("showallexpencess/" , views.showallexpencesrecord , name="showallexpencess"),
+    path("searchdata/" , views.searchrecordinexpencess , name="searchdata"),
+    path("deleteexpensedata/" , views.deleteexpencesrecord , name="deleteexpensedata"),
     
 ]

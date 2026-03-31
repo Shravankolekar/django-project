@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Particular Record</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <input type="number"
+        name="eid"
+        placeholder="Enter a Expences ID Number"
+        required>
+
+        <button type="submit">Search Data</button>
+    
+        {% if error %}
+        <p><b>{{error}}</b></p>
+        {% endif %}
+    </form>
+    {% if s %}
+    <table>
+        <thead>
+            <tr>
+                <th>Expences ID</th>
+                <th>Use Name</th>
+                <th>Category Name</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>{{s.eid}}</td>
+                <td>{{s.uid}}</td>
+                <td>{{s.cid}}</td>
+                <td>{{s.amount}}</td>
+                <td>{{s.description}}</td>
+                <td>{{s.date}}</td>
+            </tr>
+           
+        </tbody>
+    </table>
+    
+    {% endif %}
+    
+</body>
+</html>

@@ -58,7 +58,7 @@ def LogIn(request):
 
 def AllUserDetails(request):
     usersdata = User.objects.all()
-    return render(request, "User/AllUserDetails.html",{'usersdata ': usersdata})
+    return render(request, "User/AllUserDetails.html",{"usersdata": usersdata})
 
 def Addcategory(request):
     error = ""
@@ -174,3 +174,36 @@ def addexpense(request):
             error = "Invalid category"
     return render(request, "Expense/addexpense.html", {"error": error})
 
+def showallexpencesrecord(request):
+    Expenses = Expense.objects.all()
+    return render(request , "Expense/showallexpense.html" , {"Expenses" : Expenses})
+
+def searchrecordinexpencess(request):
+    error = " "
+    s = None
+    
+    if request.method == "POST":
+        eid = request.POST.get("eid")
+        
+        s = Expense.objects.filter(eid = eid).first()
+        
+        if s is None:
+            error = f"{eid} numbers data not found in the database please Enter a currect Expences id"
+            
+    return render(request , "Expense/viewexpense.html" , {"error" : error , "s" : s})
+
+def deleteexpencesrecord(request):
+    error = ""
+    
+    if request.method == "POST":
+        eid = request.POST.get("eid")
+        
+        if Expense.objects.filter(eid = eid).exists():
+            deletedata = Expense.objects.get(eid = eid)
+            deletedata.delete()
+            error = f"{eid} number data is deleted sucessfullay"
+            
+        else:
+            error = f"{eid} Number Data nout found"
+    return render(request, "Expense/deleteexpense.html" , {"error" : error})
+            

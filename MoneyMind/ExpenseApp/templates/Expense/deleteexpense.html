@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <input type="number"
+        name="eid"
+        placeholder="Enter a number to delate expencess"
+        required>
+
+        {% if error %}
+        <p><b>{{error}}</b></p>
+        {% endif %}
+        
+        <button type="submit">Dalete Data</button>
+    </form>
+</body>
+</html>
