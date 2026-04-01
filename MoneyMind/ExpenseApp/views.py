@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from .models import User , Category , Expense , Budget , Report
 from datetime import date
 
@@ -73,7 +73,7 @@ def Addcategory(request):
             Category.objects.create(
                 cname = cname
             )
-            error = "category is added sucessfuly"
+            return redirect('addexpense')
         except :
             error = "category is not added sucessfuly"
     return render(request,"Category/addcategory.html" , {"error" : error})
@@ -268,3 +268,26 @@ def deleteexpencesrecord(request):
 #             error = f"{eid} expense numbser is not found"
 #         u.save()
 #     return render(request, "Expense/updateexpense.html", {"error" : error , "u" : u})
+
+
+def setbudhet(request):
+    
+    error = ''
+    
+    if request.method == "POST":
+        uid = request.POST.get('uid')
+        total_expense = request.POST.get('total_expense')
+        month = request.POST.get('month')
+        
+        try:
+            Report.objects.create(
+                uid = User.objects.get(uid = uid),
+                total_expense = total_expense,
+                month = month
+            )
+            
+            error = f"smdnfkndsjkn"
+        except:
+            error = "unsucessfullay"
+    
+    return render(request , "Budget/setbudge.html" , {"error" : error})
