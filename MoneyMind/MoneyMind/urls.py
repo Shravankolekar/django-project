@@ -36,5 +36,6 @@ urlpatterns = [
     path("showallexpencess/" , views.showallexpencesrecord , name="showallexpencess"),
     path("searchdata/" , views.searchrecordinexpencess , name="searchdata"),
     path("deleteexpensedata/" , views.deleteexpencesrecord , name="deleteexpensedata"),
+    # path("updateexpensedata/", views.Updateallexpensedata , name="updateexpensedata"),
     
 ]

@@ -1,0 +1,48 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Expense Data</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <input type="number"
+        name="eid"
+        placeholder="enter a expense id number"
+        required>
+
+        <input type="number"
+        name="uid"
+        placeholder="enter your user id number"
+        value="{{u.uid}}"
+        required>
+
+        <input type="number"
+        name="cid"
+        placeholder="enter a category id number"
+        value="{{u.cid}}"
+        required>
+
+        <input type="number"
+        name="amount"
+        placeholder="enter updated amount hear"
+        value="{{u.amount}}">
+
+        <input type="text"
+        name="description"
+        placeholder="enter a updated description "
+        value="{{u.description}}">
+
+        {% if error %}
+        <p><b>{{error}}</b></p>
+        {% endif %}
+
+        <button type="submit">Update Data</button>
+
+
+    </form>
+</body>
+</html> {% endcomment %}

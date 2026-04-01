@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import User , Category , Expense , Budget , Report
+from datetime import date
 
 # Create your views here.
 
@@ -55,6 +56,7 @@ def LogIn(request):
                 error = "Invalid email or password"
     
     return render(request, 'User/login.html', {'error': error , msg : "msg"})
+
 
 def AllUserDetails(request):
     usersdata = User.objects.all()
@@ -206,4 +208,63 @@ def deleteexpencesrecord(request):
         else:
             error = f"{eid} Number Data nout found"
     return render(request, "Expense/deleteexpense.html" , {"error" : error})
+
+# def Updateallexpensedata(request):
+#     error = ""
+#     u = None
+    
+#     if request.method == "POST":
+#         eid = request.POST.get("eid")
+#         uid = request.POST.get("uid")
+#         cid = request.POST.get("cid")
+#         amount = request.POST.get("amount")
+#         description = request.POST.get("descrition")
+        
+#         try:
+#             u = Expense.objects.get(eid=eid)
+#         except :
+#             error = f"{eid} number bit found"
+        
+#         if uid is not None:
+#             if User.objects.filter(uid = uid).exists():
+                
+#                     u.uid = User.objects.get(uid=uid)
+
+                    
+                
+#             else:
+#                 error = f"{uid} numbers user not found"
+#         else:
+#             pass
+        
+#         if cid:
+#             if Category.objects.get(cid = cid):
+                
+#                     u.cid = Category.objects.get(cid=cid)
+#             else : 
+#                 error = f"{uid} numbers category not found"
+#         else:
+#             pass
             
+#         if amount:
+            
+#                 u.amount = amount
+                
+            
+#         else:
+#             pass
+        
+#         if description:
+            
+#                 u.description = description
+            
+#         else:
+#             pass
+                
+#         try:
+#             u.date = date.today()
+            
+#         except:
+#             error = f"{eid} expense numbser is not found"
+#         u.save()
+#     return render(request, "Expense/updateexpense.html", {"error" : error , "u" : u})
