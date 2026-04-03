@@ -38,7 +38,6 @@ urlpatterns = [
     path("deleteexpensedata/" , views.deleteexpencesrecord , name="deleteexpensedata"),
     # path("updateexpensedata/", views.Updateallexpensedata , name="updateexpensedata"),
     
-    path("setbudget/" , views.setbudhet , name="setbudget"),
     path("searchbudgetrecords/" , views.searchrecordsofbudget, name="searchbudgetrecords"),
     
 ]

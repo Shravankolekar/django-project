@@ -2,47 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showing All Record In Budget</title>
+    <title>Search Budget</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <form action="" method="POST">
-            {% csrf_token %}
 
-            <input type="number"
-            name="bid" 
-            placeholder="enter a Budget Id"
-            required>
+<h2>Search Budget Record</h2>
 
-            {% if error %}
-            <p><b>{{error}}</b></p>
-            {% endif %}
+<form method="POST">
+    {% csrf_token %}
 
-            <button type="submit">Search records</button>
-        </form>
+    <input type="number" name="bid" placeholder="Enter Budget ID" required>
 
-        {% if a %}
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Budget Id</th>
-                    <th>User Id</th>
-                    <th>Monthly Limit</th>
-                    <th>Month</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    0<td>{{a.rid}}</td>
-                    <td>{{a.uid}}</td>
-                    <td>{{a.monthly_limit}}</td>
-                    <td>{{a.month}}</td>
-                </tr>
-            </tbody>
-        </table>
-        {% endif %}
-        
+    <button type="submit">Search</button>
+
+    {% if error %}
+        <p style="color:red;"><b>{{error}}</b></p>
+    {% endif %}
+</form>
+
+<br>
+
+{% if a %}
+<table>
+    <thead>
+        <tr>
+            <th>Budget Id</th>
+            <th>User Id</th>
+            <th>Monthly Limit</th>
+            <th>Month</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{a.bid}}</td>
+            <td>{{a.uid}}</td>
+            <td>{{a.monthly_limit}}</td>
+            <td>{{a.month}}</td>
+        </tr>
+    </tbody>
+</table>
+{% endif %}
+
 </body>
-</html>python manage.py runserver
+</html>

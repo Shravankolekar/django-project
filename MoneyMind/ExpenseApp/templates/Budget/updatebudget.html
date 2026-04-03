@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Budget</title>
+</head>
+<body>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <input type="number"
+        name="bid"
+        placeholder="Enter a Budget ID"
+        required>
+
+        <input type="number"
+        name="uid"
+        placeholder="enter a User id "
+        value="{{u.uid}}">
+
+        <input type="">
+    </form>
+
+</body>
+</html>

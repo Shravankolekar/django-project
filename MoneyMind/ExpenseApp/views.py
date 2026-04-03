@@ -270,41 +270,24 @@ def deleteexpencesrecord(request):
 #     return render(request, "Expense/updateexpense.html", {"error" : error , "u" : u})
 
 
-def setbudhet(request):
-    
-    error = ''
-    
-    if request.method == "POST":
-        uid = request.POST.get('uid')
-        total_expense = request.POST.get('total_expense')
-        month = request.POST.get('month')
-        
-        try:
-            Report.objects.create(
-                uid = User.objects.get(uid = uid),
-                total_expense = total_expense,
-                month = month
-            )
-            
-            error = f"smdnfkndsjkn"
-        except:
-            error = "unsucessfullay"
-    
-    return render(request , "Budget/setbudge.html" , {"error" : error})
+
+
+
+
 
 def searchrecordsofbudget(request):
-    
+
     error = ""
     a = None
-    
+
     if request.method == "POST":
-        bid = request.POST.get('bid')
-        
-        a = Budget.objects.filter(bid = bid).first()
-        
-        # if a is None:
-        #     error = f"{bid} numbers data not found in the database please Enter a currect Budget id"
-        
-    return render(request, "Budget/viewbudget.html" , {"error" : error , "a" : a})
+        bid = request.POST.get("bid")
+
+        try:
+            a = Budget.objects.get(bid=bid)
+        except Budget.DoesNotExist:
+            error = "Data not found! Please enter correct Budget ID"
+
+    return render(request, "budget/viewbudget.html", {"a": a, "error": error})
         
         
