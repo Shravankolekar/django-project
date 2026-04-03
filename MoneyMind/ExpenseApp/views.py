@@ -291,3 +291,20 @@ def setbudhet(request):
             error = "unsucessfullay"
     
     return render(request , "Budget/setbudge.html" , {"error" : error})
+
+def searchrecordsofbudget(request):
+    
+    error = ""
+    a = None
+    
+    if request.method == "POST":
+        bid = request.POST.get('bid')
+        
+        a = Budget.objects.filter(bid = bid).first()
+        
+        # if a is None:
+        #     error = f"{bid} numbers data not found in the database please Enter a currect Budget id"
+        
+    return render(request, "Budget/viewbudget.html" , {"error" : error , "a" : a})
+        
+        

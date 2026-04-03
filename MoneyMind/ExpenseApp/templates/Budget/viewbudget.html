@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showing All Record In Budget</title>
+</head>
+<body>
+    <table>
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <input type="number"
+            name="bid" 
+            placeholder="enter a Budget Id"
+            required>
+
+            {% if error %}
+            <p><b>{{error}}</b></p>
+            {% endif %}
+
+            <button type="submit">Search records</button>
+        </form>
+
+        {% if a %}
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Budget Id</th>
+                    <th>User Id</th>
+                    <th>Monthly Limit</th>
+                    <th>Month</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    0<td>{{a.rid}}</td>
+                    <td>{{a.uid}}</td>
+                    <td>{{a.monthly_limit}}</td>
+                    <td>{{a.month}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% endif %}
+        
+</body>
+</html>python manage.py runserver
