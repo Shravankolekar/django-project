@@ -268,7 +268,6 @@ def deleteexpencesrecord(request):
 #             error = f"{eid} expense numbser is not found"
 #         u.save()
 #     return render(request, "Expense/updateexpense.html", {"error" : error , "u" : u})
-
 def setbudget(request):
     
     error = ""
@@ -279,21 +278,23 @@ def setbudget(request):
         month = request.POST.get('month')
         
         try:
+            user = User.objects.filter(uid=uid).first()
+
+            if user is None:
+                error = "User not found"
+            elif month == "":
+                error = "Please select a month"
+            else:
+                Budget.objects.create(
+                    uid=user,
+                    monthly_limit=int(monthly_limit),
+                    month=month
+                )
+                error = "Set successfully"
+        except Exception as e:
+            error = f"Error: {e}"
             
-            userid = User.objects.get(uid = uid)
-            
-            Budget.objects.create(
-                uid = userid,
-                monthly_limit = monthly_limit,
-                month = month
-            )
-            
-            error = "set sucessfullay"
-        except:
-            
-            error = "set unsucessfullay"
-            
-    return render(request, "Budget/setbudge.html" , {"error" : error})
+    return render(request, "Budget/setbudge.html", {"error": error})
 
 
 
