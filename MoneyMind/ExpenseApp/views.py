@@ -269,7 +269,31 @@ def deleteexpencesrecord(request):
 #         u.save()
 #     return render(request, "Expense/updateexpense.html", {"error" : error , "u" : u})
 
+def setbudget(request):
+    
+    error = ""
 
+    if request.method == "POST":
+        uid = request.POST.get('uid')
+        monthly_limit = request.POST.get('monthly_limit')
+        month = request.POST.get('month')
+        
+        try:
+            
+            userid = User.objects.get(uid = uid)
+            
+            Budget.objects.create(
+                uid = userid,
+                monthly_limit = monthly_limit,
+                month = month
+            )
+            
+            error = "set sucessfullay"
+        except:
+            
+            error = "set unsucessfullay"
+            
+    return render(request, "Budget/setbudge.html" , {"error" : error})
 
 
 
