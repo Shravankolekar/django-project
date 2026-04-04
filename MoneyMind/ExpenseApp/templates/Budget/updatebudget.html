@@ -18,7 +18,32 @@
         <input type="number"
         name="uid"
         placeholder="enter a User id "
-        value="{{u.uid}}">
+        value="{{u.uid}}"
+        required>
+
+        <input type="number"
+        name="monthly_limit"
+        placeholder="enter a monthlu limit"
+        value="{{u.monthly_limit}}"
+        required>
+
+        <label for="">Month :</label>
+
+      <select name="{{u.month}}">
+        <option value="">-- Select Month --</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+      </select>
 
         <input type="">
     </form>

@@ -316,3 +316,34 @@ def searchrecordsofbudget(request):
     return render(request, "budget/viewbudget.html", {"a": a, "error": error})
         
         
+def updatebudget(request):
+    error = ""
+    u = None
+    
+    if request.method == "POST":
+        bid = request.POST.get('bid')
+        uid = request.POST.get('uid')
+        monthly_limit = request.POST.get('monthly_limit')
+        month = request.POST.get('month')
+        
+        try:
+            userid = User.objects.filter(uid = uid).first()
+            
+            if userid is None:
+                error = "user not found"
+            elif month == "":
+                error = "please select month "
+            else:
+                
+                u = Budget.objects.get(bid = bid)
+                u.uid = userid
+                u.monthly_limit = monthly_limit
+                u.month = month
+                
+                u.save()
+                
+                error = "update sucessfullay"
+        except : 
+            error = "update unsucessfullay"
+    
+    return render ( request , "Budget/updatebudget.html" , {"error" : error , "u" : u})
