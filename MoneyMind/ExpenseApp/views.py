@@ -347,3 +347,5 @@ def updatebudget(request):
             error = "update unsucessfullay"
     
     return render ( request , "Budget/updatebudget.html" , {"error" : error , "u" : u})
+
+from django.db.models import Sum
