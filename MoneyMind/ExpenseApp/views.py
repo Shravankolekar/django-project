@@ -348,4 +348,59 @@ def updatebudget(request):
     
     return render ( request , "Budget/updatebudget.html" , {"error" : error , "u" : u})
 
-from django.db.models import Sum
+
+
+import matplotlib.pyplot as plt
+import io
+import base64
+
+from django.shortcuts import render
+from .models import Expense
+
+def analyze_expense(request):
+
+    # 👉 Get data from database
+    expenses = Expense.objects.all()
+    budget = Budget.objects.all()
+    report = Report.objects.all()
+    
+    amounts = []
+    month_limit = []
+    total_exe = []
+    months = []
+    cid_exp = []
+
+    for e in expenses:
+        amounts.append(e. amount)
+        cid_exp.append(e.cid.cname)
+    
+    for b in budget:
+        month_limit.append(b.monthly_limit)
+        
+    for r in report:
+        total_exe.append(r. total_expense)
+        months.append(r.month)
+        
+
+    # 👉 Create graph
+    plt.figure(figsize=(6,4))
+    plt.bar(cid_exp, amounts, color='orange')
+    plt.title("Expense Analysis")
+    plt.xlabel("Category")
+    plt.ylabel("Amount")
+    
+    
+    plt.plot(months, total_exe, marker='o', label='Total Expense')
+
+    # 👉 Save graph to memory
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+
+    image_png = buffer.getvalue()
+    buffer.close()
+
+    graph = base64.b64encode(image_png).decode('utf-8')
+    graph1 = base64.b64encode(image_png).decode('utf-8')
+
+    return render(request, 'Reports/analyticsdashboard.html', {'graph': graph , 'graph1': graph1})
