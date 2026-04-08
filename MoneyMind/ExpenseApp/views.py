@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import User , Category , Expense , Budget , Report
+from .models import Users , Category , Expense , Budget , Report
 from datetime import date
 
 # Create your views here.
@@ -14,7 +14,7 @@ def SignUp(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
 
-        if User.objects.filter(email=email).exists():
+        if Users.objects.filter(email=email).exists():
             error = "Email already exists"
 
         elif len(password) < 8:
@@ -25,7 +25,7 @@ def SignUp(request):
 
         else:
             try:
-                User.objects.create(
+                Users.objects.create(
                     username=username,
                     email=email,
                     password=password
@@ -50,7 +50,7 @@ def LogIn(request):
         
         else:
             try:
-                loginuser = User.objects.get(email=email, password=password)
+                loginuser = Users.objects.get(email=email, password=password)
                 error = "Login Successful"
             except:
                 error = "Invalid email or password"
@@ -59,7 +59,7 @@ def LogIn(request):
 
 
 def AllUserDetails(request):
-    usersdata = User.objects.all()
+    usersdata = Users.objects.all()
     return render(request, "User/AllUserDetails.html",{"usersdata": usersdata})
 
 def Addcategory(request):
@@ -154,9 +154,9 @@ def addexpense(request):
             amount = request.POST.get('amount')
             description = request.POST.get('description')
             
-            user = User.objects.get(uid = uid)  # Replace with actual user retrieval logic
+            user = Users.objects.get(uid = uid)  # Replace with actual user retrieval logic
             
-            if User.objects.filter(uid = uid).exists():
+            if Users.objects.filter(uid = uid).exists():
                 pass
             else:
                 error = "user not found"
@@ -278,7 +278,7 @@ def setbudget(request):
         month = request.POST.get('month')
         
         try:
-            user = User.objects.filter(uid=uid).first()
+            user = Users.objects.filter(uid=uid).first()
 
             if user is None:
                 error = "User not found"
@@ -327,7 +327,7 @@ def updatebudget(request):
         month = request.POST.get('month')
         
         try:
-            userid = User.objects.filter(uid = uid).first()
+            userid = Users.objects.filter(uid = uid).first()
             
             if userid is None:
                 error = "user not found"
@@ -390,7 +390,7 @@ def analyze_expense(request):
     plt.ylabel("Amount")
     
     
-    plt.plot(months, total_exe, marker='o', label='Total Expense')
+    plt.bar(months, total_exe, label='Total Expense')
 
     # 👉 Save graph to memory
     buffer = io.BytesIO()

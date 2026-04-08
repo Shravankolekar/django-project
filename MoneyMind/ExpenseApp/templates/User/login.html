@@ -4,6 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login User</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        p b {
+            color: #d9534f; /* default red for error */
+        }
+
+        {% if msg %}
+        p b {
+            color: #28a745; /* green for success message */
+        }
+        {% endif %}
+    </style>
 </head>
 <body>
     <form action="" method="POST">
@@ -23,7 +99,6 @@
 
         <button type="submit">Login Up</button>
 
-        
         {% if error %}
         <p><b>{{error}}</b></p>
         {% endif %}

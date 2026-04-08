@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
+class Users(models.Model):
     uid = models.AutoField(primary_key=True)
     username = models.CharField()
     email = models.EmailField()
@@ -19,7 +19,7 @@ class Category(models.Model):
     
 class Expense(models.Model):
     eid = models.AutoField(primary_key=True)
-    uid = models.ForeignKey(User , on_delete=models.CASCADE)
+    uid = models.ForeignKey(Users , on_delete=models.CASCADE)
     cid = models.ForeignKey(Category , on_delete=models.CASCADE)
     amount = models.BigIntegerField()
     description = models.CharField()
@@ -30,7 +30,7 @@ class Expense(models.Model):
     
 class Budget(models.Model):
     bid = models.AutoField(primary_key=True)
-    uid = models.ForeignKey(User, on_delete=models.CASCADE)
+    uid = models.ForeignKey(Users, on_delete=models.CASCADE)
     monthly_limit = models.BigIntegerField()
     month = models.CharField()
     
@@ -39,7 +39,7 @@ class Budget(models.Model):
     
 class Report(models.Model):
     rid = models.AutoField(primary_key=True)
-    uid = models.ForeignKey(User , on_delete=models.CASCADE)
+    uid = models.ForeignKey(Users , on_delete=models.CASCADE)
     total_expense = models.BigIntegerField()
     month = models.CharField()
     
