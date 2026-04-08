@@ -96,7 +96,7 @@ def Deletecategory(request):
         else:
             error= f"{cid} number user not found"
             
-        return render(request , "Category/deletecategory.html" , {error : "error"})    
+    return render(request , "Category/deletecategory.html" , {error : "error"})    
     
 def Searchcategory(request):
     error = ""
