@@ -3,7 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Expense </title>
+    <title>Add Expense</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 450px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <form action="" method="POST">
@@ -11,32 +68,30 @@
         <label for="">User ID</label>
         <input type="number"
         name="uid"
-        placeholder="enter a user Id"
+        placeholder="Enter a user ID"
         required>
 
-        <label for="">Category Id</label>
+        <label for="">Category ID</label>
         <input type="number"
         name="cid"
-        placeholder="enter a category id"
+        placeholder="Enter a category ID"
         required>
 
         <label for="">Amount</label>
         <input type="number"
         name="amount"
-        placeholder="enter a amount of thet category"
+        placeholder="Enter the amount"
         required>
 
-        <label for="">Description </label>
+        <label for="">Description</label>
         <input type="text"
         name="description"
-        placeholder="enter a description about this amount investment"
-        >
+        placeholder="Enter a description about this expense">
 
-        <button type="submit0">Add Expences</button>
-        
+        <button type="submit">Add Expense</button>
 
         {% if error %}
-        <p><b>{{error}}</b></p>
+        <p><b>{{ error }}</b></p>
         {% endif %}
     </form>
 </body>

@@ -3,36 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show all Expencess Records</title>
+    <title>Show all Expenses Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            position: sticky;
+            top: 0; /* Keeps header visible while scrolling */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Scrollable container */
+        .table-container {
+            max-height: 500px; /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Expances ID</th>
-                <th>User Name</th>
-                <th>Category Name</th>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        
-        
-        <tbody>
-            {% for e in Expenses %}
-            <tr>
-                <td>{{e.eid}}</td>
-                <td>{{e.uid}}</td>
-                <td>{{e.cid}}</td>
-                <td>{{e.amount}}</td>
-                <td>{{e.description}}</td>
-                <td>{{e.date}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    
-        
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Expenses ID</th>
+                    <th>User Name</th>
+                    <th>Category Name</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in Expenses %}
+                <tr>
+                    <td>{{e.eid}}</td>
+                    <td>{{e.uid}}</td>
+                    <td>{{e.cid}}</td>
+                    <td>{{e.amount}}</td>
+                    <td>{{e.description}}</td>
+                    <td>{{e.date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
