@@ -4,48 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Budget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            width: 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff9a9e;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 154, 158, 0.8);
+        }
+
+        button {
+            background: #ff9a9e;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #e57373;
+        }
+
+        p {
+            text-align: center;
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     
     <form action="" method="POST">
         {% csrf_token %}
+        <h2>Update Budget</h2>
 
-        <input type="number"
-        name="bid"
-        placeholder="Enter a Budget ID"
-        required>
+        <input type="number" name="bid" placeholder="Enter Budget ID" required>
+        <input type="number" name="uid" placeholder="Enter User ID" value="{{u.uid}}" required>
+        <input type="number" name="monthly_limit" placeholder="Enter Monthly Limit" value="{{u.monthly_limit}}" required>
 
-        <input type="number"
-        name="uid"
-        placeholder="enter a User id "
-        value="{{u.uid}}"
-        required>
+        <label for="month">Month :</label>
+        <select name="month" id="month">
+            <option value="">-- Select Month --</option>
+            <option value="January" {% if u.month == "January" %}selected{% endif %}>January</option>
+            <option value="February" {% if u.month == "February" %}selected{% endif %}>February</option>
+            <option value="March" {% if u.month == "March" %}selected{% endif %}>March</option>
+            <option value="April" {% if u.month == "April" %}selected{% endif %}>April</option>
+            <option value="May" {% if u.month == "May" %}selected{% endif %}>May</option>
+            <option value="June" {% if u.month == "June" %}selected{% endif %}>June</option>
+            <option value="July" {% if u.month == "July" %}selected{% endif %}>July</option>
+            <option value="August" {% if u.month == "August" %}selected{% endif %}>August</option>
+            <option value="September" {% if u.month == "September" %}selected{% endif %}>September</option>
+            <option value="October" {% if u.month == "October" %}selected{% endif %}>October</option>
+            <option value="November" {% if u.month == "November" %}selected{% endif %}>November</option>
+            <option value="December" {% if u.month == "December" %}selected{% endif %}>December</option>
+        </select>
 
-        <input type="number"
-        name="monthly_limit"
-        placeholder="enter a monthlu limit"
-        value="{{u.monthly_limit}}"
-        required>
-
-        <label for="">Month :</label>
-
-      <select name="{{u.month}}">
-        <option value="">-- Select Month --</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
-      </select>
-
-        <input type="">
+        <button type="submit">Update Budget</button>
     </form>
 
 </body>

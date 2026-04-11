@@ -40,7 +40,9 @@ urlpatterns = [
     
     path("setbudget/" , views.setbudget , name="setbudget"),
     path("searchbudgetrecords/" , views.searchrecordsofbudget, name="searchbudgetrecords"),
-    path('anylize/' , views.analyze_expense , name="anyloize")
+    path("updatebudget/" , views.updatebudget , name="updatebudget"),
+    
+    path('anylize/' , views.analyze_expense , name="anyloize"),
     
     
 ]
