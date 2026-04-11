@@ -43,6 +43,7 @@ urlpatterns = [
     path("updatebudget/" , views.updatebudget , name="updatebudget"),
     
     path('anylize/' , views.analyze_expense , name="anyloize"),
+    path('homepage/' , views.homepage , name="homepage"),
     
     
 ]

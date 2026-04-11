@@ -30,7 +30,8 @@ def SignUp(request):
                     email=email,
                     password=password
                 )
-                error = "Signup Successful"
+                
+                return redirect('homepage')
             except:
                 error = "Signup Failed"
 
@@ -51,7 +52,7 @@ def LogIn(request):
         else:
             try:
                 loginuser = Users.objects.get(email=email, password=password)
-                error = "Login Successful"
+                return redirect('homepage')
             except:
                 error = "Invalid email or password"
     
@@ -404,3 +405,6 @@ def analyze_expense(request):
     graph1 = base64.b64encode(image_png).decode('utf-8')
 
     return render(request, 'Reports/analyticsdashboard.html', {'graph': graph , 'graph1': graph1})
+
+def homepage(request):
+    return render(request, "Common/home.html")
