@@ -4,39 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set Budget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            width: 350px;
+        }
+
+        form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #74ebd5;
+            outline: none;
+            box-shadow: 0 0 5px rgba(116, 235, 213, 0.8);
+        }
+
+        button {
+            background: #74ebd5;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #4bb3a7;
+        }
+
+        p {
+            text-align: center;
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
     <form action="" method="POST">
         {% csrf_token %}
+        <h2>Set Budget</h2>
 
-        <input type="number"
-        name="uid"
-        placeholder="enter a User id"
-        required>
+        <input type="number" name="uid" placeholder="Enter User ID" required>
+        <input type="number" name="monthly_limit" placeholder="Enter Monthly Limit" required>
 
-        <input type="number"
-        name="monthly_limit"
-        placeholder="enter a monthly limit"
-        required>
-
-        <label for="">Month :</label>
-
-      <select name="month">
-        <option value="">-- Select Month --</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
-      </select>
+        <label for="month">Month :</label>
+        <select name="month" id="month">
+            <option value="">-- Select Month --</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
 
         <button type="submit">Set Budget</button>
 
@@ -44,6 +96,6 @@
         <p><b>{{error}}</b></p>
         {% endif %}
     </form>
-    
+
 </body>
 </html>
