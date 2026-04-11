@@ -6,9 +6,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-@login_required
-def homepage(request):
-    return render(request, "Common/home.html")
+
 
 def SignUp(request):
     error = ""
@@ -410,6 +408,5 @@ def analyze_expense(request):
 
     return render(request, 'Reports/analyticsdashboard.html', {'graph': graph , 'graph1': graph1})
 
-@login_required
 def homepage(request):
     return render(request, "Common/home.html")
