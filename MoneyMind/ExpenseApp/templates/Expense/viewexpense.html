@@ -3,50 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Particular Record</title>
+    <title>Show all Expenses Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto 20px auto;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            position: sticky;
+            top: 0; /* Keeps header visible while scrolling */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Scrollable container */
+        .table-container {
+            max-height: 500px; /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="POST">
+    <form method="POST">
         {% csrf_token %}
 
-        <input type="number"
+        <input type="text"
         name="eid"
-        placeholder="Enter a Expences ID Number"
+        placeholder="Enter a category id"
         required>
 
-        <button type="submit">Search Data</button>
-    
+        <button type="submit">Search Expenses</button>
+
         {% if error %}
         <p><b>{{error}}</b></p>
         {% endif %}
     </form>
-    {% if s %}
-    <table>
-        <thead>
-            <tr>
-                <th>Expences ID</th>
-                <th>Use Name</th>
-                <th>Category Name</th>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            <tr>
-                <td>{{s.eid}}</td>
-                <td>{{s.uid}}</td>
-                <td>{{s.cid}}</td>
-                <td>{{s.amount}}</td>
-                <td>{{s.description}}</td>
-                <td>{{s.date}}</td>
-            </tr>
-           
-        </tbody>
-    </table>
-    
-    {% endif %}
-    
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Expenses ID</th>
+                    <th>User Name</th>
+                    <th>Category Name</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in Expenses %}
+                <tr>
+                    <td>{{e.eid}}</td>
+                    <td>{{e.uid}}</td>
+                    <td>{{e.cid}}</td>
+                    <td>{{e.amount}}</td>
+                    <td>{{e.description}}</td>
+                    <td>{{e.date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
